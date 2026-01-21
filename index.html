@@ -6,7 +6,6 @@
     <title>Lee the BarberShop | Premium Grooming Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&family=Raleway:wght@400;500;600&family=Montserrat:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
     <style>
         /* Base Styles & Variables */
         :root {
@@ -574,7 +573,7 @@
             }
         }
         
-        /* HERO SECTION - COMPLETELY REDESIGNED */
+        /* HERO SECTION - UPDATED BASED ON REQUEST */
         .hero {
             height: 100vh;
             min-height: 700px;
@@ -595,6 +594,7 @@
             width: 100%;
         }
         
+        /* MOBILE: WELCOME APPEARS FIRST, IMAGE SECOND */
         @media (max-width: 992px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -603,7 +603,11 @@
             }
             
             .hero-visual-container {
-                order: -1;
+                order: 2; /* Image appears second on mobile */
+            }
+            
+            .hero-content {
+                order: 1; /* Content appears first on mobile */
             }
         }
         
@@ -633,7 +637,7 @@
             width: 100%;
         }
         
-        /* NEW HERO VISUAL DESIGN */
+        /* UPDATED HERO VISUAL DESIGN - NORMAL IMAGE, NO MOVING/CUSTOM SHAPES */
         .hero-visual-container {
             position: relative;
             width: 100%;
@@ -647,175 +651,24 @@
             position: relative;
             width: 400px;
             height: 400px;
-            animation: floatHero 8s infinite ease-in-out;
         }
         
-        @keyframes floatHero {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(2deg);
-            }
-        }
-        
-        /* Main circular shape with gradient border */
-        .hero-shape {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--gold), var(--accent), var(--navy-lighter));
-            border-radius: 50%;
-            animation: morphShape 15s infinite ease-in-out;
-            filter: blur(20px);
-            opacity: 0.2;
-        }
-        
-        @keyframes morphShape {
-            0%, 100% {
-                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-                transform: rotate(0deg) scale(1);
-            }
-            25% {
-                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-                transform: rotate(90deg) scale(1.05);
-            }
-            50% {
-                border-radius: 40% 60% 70% 30% / 60% 50% 40% 50%;
-                transform: rotate(180deg) scale(1.1);
-            }
-            75% {
-                border-radius: 70% 30% 40% 60% / 40% 60% 70% 50%;
-                transform: rotate(270deg) scale(1.05);
-            }
-        }
-        
-        /* Image container with custom shape mask */
+        /* NORMAL IMAGE CONTAINER - NO CUSTOM SHAPES */
         .hero-image-container {
             position: absolute;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
-            animation: imageMaskMorph 12s infinite ease-in-out;
-            box-shadow: 
-                inset 0 0 50px rgba(212, 175, 55, 0.3),
-                0 30px 60px rgba(0, 0, 0, 0.4);
-            border: 4px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        @keyframes imageMaskMorph {
-            0%, 100% {
-                border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
-                transform: rotate(0deg) scale(1);
-            }
-            33% {
-                border-radius: 60% 40% 40% 60% / 60% 50% 50% 40%;
-                transform: rotate(5deg) scale(1.02);
-            }
-            66% {
-                border-radius: 50% 50% 60% 40% / 40% 60% 50% 60%;
-                transform: rotate(-5deg) scale(0.98);
-            }
+            border-radius: 12px; /* Simple rounded corners */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 4px solid var(--gold);
         }
         
         .hero-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 1s ease;
-            animation: parallaxImage 20s infinite ease-in-out;
-        }
-        
-        @keyframes parallaxImage {
-            0%, 100% {
-                transform: translate(0, 0) scale(1.1);
-            }
-            25% {
-                transform: translate(5px, -5px) scale(1.12);
-            }
-            50% {
-                transform: translate(-5px, 5px) scale(1.08);
-            }
-            75% {
-                transform: translate(3px, 3px) scale(1.1);
-            }
-        }
-        
-        /* Floating UI Elements */
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        
-        .floating-element {
-            position: absolute;
-            animation: floatElement 8s infinite ease-in-out;
-        }
-        
-        .floating-dot {
-            width: 15px;
-            height: 15px;
-            background: var(--gold);
-            border-radius: 50%;
-            opacity: 0.6;
-            box-shadow: 0 0 20px var(--gold);
-        }
-        
-        .floating-line {
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            border-radius: 3px;
-        }
-        
-        .floating-blob {
-            width: 60px;
-            height: 60px;
-            background: rgba(100, 255, 218, 0.2);
-            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
-            border: 2px solid rgba(100, 255, 218, 0.3);
-        }
-        
-        @keyframes floatElement {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(20px, -30px) rotate(90deg);
-            }
-            50% {
-                transform: translate(-15px, 20px) rotate(180deg);
-            }
-            75% {
-                transform: translate(10px, 15px) rotate(270deg);
-            }
-        }
-        
-        /* Animated Background Pattern */
-        .hero-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 2px, transparent 2px),
-                radial-gradient(circle at 80% 20%, rgba(100, 255, 218, 0.1) 2px, transparent 2px),
-                radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.05) 1px, transparent 1px),
-                radial-gradient(circle at 60% 60%, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px, 60px 60px, 80px 80px, 100px 100px;
-            animation: patternMove 40s infinite linear;
-            opacity: 0.3;
-        }
-        
-        @keyframes patternMove {
-            0% {
-                background-position: 0 0, 0 0, 0 0, 0 0;
-            }
-            100% {
-                background-position: 100px 100px, 200px 200px, 300px 300px, 400px 400px;
-            }
+            object-fit: cover; /* Ensures entire image is viewable */
+            object-position: center center; /* Centers the image */
         }
         
         /* Stats Counter */
@@ -2112,7 +1965,7 @@
         </div>
     </header>
 
-    <!-- Hero Section - COMPLETELY REDESIGNED -->
+    <!-- Hero Section - UPDATED BASED ON REQUEST -->
     <section class="hero" id="home">
         <div class="hero-pattern"></div>
         <div class="container hero-container">
@@ -2141,25 +1994,12 @@
                 </div>
             </div>
             
-            <!-- NEW HERO VISUAL DESIGN -->
+            <!-- UPDATED HERO VISUAL DESIGN - NORMAL IMAGE, NO MOVING/CUSTOM SHAPES -->
             <div class="hero-visual-container fade-in-up">
                 <div class="hero-image-wrapper">
-                    <!-- Animated background shapes -->
-                    <div class="hero-shape"></div>
-                    
-                    <!-- Floating UI elements -->
-                    <div class="floating-elements">
-                        <div class="floating-element floating-dot" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
-                        <div class="floating-element floating-dot" style="top: 70%; left: 85%; animation-delay: 2s;"></div>
-                        <div class="floating-element floating-line" style="top: 10%; left: 80%; animation-delay: 1s;"></div>
-                        <div class="floating-element floating-line" style="top: 80%; left: 10%; animation-delay: 3s;"></div>
-                        <div class="floating-element floating-blob" style="top: 30%; left: 80%; animation-delay: 1.5s;"></div>
-                        <div class="floating-element floating-blob" style="top: 60%; left: 5%; animation-delay: 2.5s;"></div>
-                    </div>
-                    
-                    <!-- Main image container with custom shape -->
+                    <!-- NORMAL IMAGE CONTAINER - NO CUSTOM SHAPES OR ANIMATIONS -->
                     <div class="hero-image-container">
-                        <img src="Images-videos/haircut2.jpeg" alt="Master Barber at work">
+                        <img src="Images-videos/profile.jpeg" alt="Master Barber at work">
                     </div>
                 </div>
             </div>
@@ -2185,7 +2025,7 @@
                 
                 <div class="service-card fade-in-up">
                     <div class="service-image">
-                        <img src="images-videos/massage.png" alt="Therapeutic Massage">
+                        <img src="images-videos/spa1.jpeg" alt="Therapeutic Massage">
                     </div>
                     <h3>Therapeutic Massage</h3>
                     <p>Relaxing full-body massage with premium oils and expert techniques to relieve tension, stress, and promote overall wellness.</p>
@@ -2209,7 +2049,7 @@
                 
                 <div class="service-card fade-in-up">
                     <div class="service-image">
-                        <img src="images-videos/facial.png" alt="Revitalizing Facial">
+                        <img src="images-videos/beard2.jpeg" alt="Revitalizing Facial">
                     </div>
                     <h3>Revitalizing Facial</h3>
                     <p>Professional facial treatment with deep cleansing, exfoliation, extraction, mask application, and hydration for radiant skin.</p>
@@ -2331,7 +2171,7 @@
                     
                     <div style="margin-top: 40px; background: var(--glass-bg); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--gold);">
                         <h4 style="color: var(--gold); margin-bottom: 15px;"><i class="far fa-clock"></i> Operating Hours</h4>
-                        <p style="color: var(--text-color);"><strong>Monday - Saturday:</strong> 8:00 AM - 8:00 PM</p>
+                        <p style="color: var(--text-color);"><strong>Monday - Saturday:</strong> 8:00 AM - 7:00 PM</p>
                         <p style="color: var(--text-color); margin-top: 10px;"><strong>Sunday:</strong> 10:00 AM - 6:00 PM</p>
                         <p style="color: var(--gold); margin-top: 15px;"><i class="fas fa-walking"></i> Walk-ins accommodated based on availability</p>
                     </div>
@@ -2422,7 +2262,7 @@
             <div class="gallery-controls">
                 <button class="gallery-filter active" data-filter="all">All</button>
                 <button class="gallery-filter" data-filter="haircut">Haircuts</button>
-                <button class="gallery-filter" data-filter="beard">Beard Grooming</button>
+                <button class="gallery-filter" data-filter="beard">Facial</button>
                 <button class="gallery-filter" data-filter="spa">Spa & Massage</button>
                 <button class="gallery-filter" data-filter="nail">Nail Art</button>
                 <button class="gallery-filter" data-filter="video">Videos</button>
@@ -2697,28 +2537,22 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 Lee the BarberShop. All rights reserved. | Crafted for Leethebarber Thierry</p>
+                <p>&copy; 2026 Lee the BarberShop. All rights reserved. | Crafted for Leethebarber Thierry</p>
                 <p style="margin-top: 15px;">Umoja, Mutindwa next to Dimples Supermarket | Phone: 0114 464 941 | Email: leethebarberthierry@gmail.com</p>
                 <p style="margin-top: 10px; color: var(--gold); font-size: 0.85rem;"><i class="fas fa-certificate"></i> Premium Grooming Experience</p>
             </div>
         </div>
     </footer>
 
-    <!-- Booking Success Modal -->
+    <!-- Booking Success Modal - UPDATED BASED ON REQUEST -->
     <div class="modal" id="successModal">
         <div class="modal-content">
             <button class="close-modal" id="closeModalBtn">&times;</button>
             <i class="fas fa-check-circle"></i>
             <h2>Appointment Successfully Booked!</h2>
             <p>Thank you for booking with <strong>Lee the BarberShop</strong>. Your appointment details have been sent to our team.</p>
-            <div id="appointmentDetails" style="text-align: left; background-color: var(--glass-bg); padding: 20px; border-radius: var(--radius); margin: 20px 0;"></div>
             <p style="color: var(--gold); margin: 20px 0; font-weight: 600;"><i class="fas fa-info-circle"></i> You will receive a confirmation via WhatsApp/SMS within 15 minutes.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
-                <a href="https://wa.me/254114464941?text=Confirming%20my%20appointment%20booking%20from%20Lee%20the%20BarberShop%20website" class="whatsapp-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Confirm on WhatsApp
-                </a>
-                <button class="btn" id="closeModalBtn2">Close</button>
-            </div>
+            <button class="btn" id="closeModalBtn2" style="margin-top: 20px;">Close</button>
         </div>
     </div>
 
@@ -2730,22 +2564,22 @@
                 this.currentRating = 0;
                 this.galleryItems = [
                     // Haircut Category
-                    { src: "images-videos/haircut1.jpeg", category: "haircut", title: "Precision Haircut 1" },
+                    { src: "images-videos/haircut7.jpeg", category: "haircut", title: "Precision Haircut 7" },
                     { src: "images-videos/haircut2.jpeg", category: "haircut", title: "Precision Haircut 2" },
                     { src: "images-videos/haircut3.jpeg", category: "haircut", title: "Precision Haircut 3" },
-                    { src: "images-videos/haircut4.jpeg", category: "haircut", title: "Precision Haircut 4" },
+                    { src: "images-videos/haircut9.jpeg", category: "haircut", title: "Precision Haircut 9" },
                     { src: "images-videos/haircut5.jpeg", category: "haircut", title: "Precision Haircut 5" },
-                    { src: "images-videos/haircut6.jpeg", category: "haircut", title: "Precision Haircut 6" },
+                    { src: "images-videos/haircut8.jpeg", category: "haircut", title: "Precision Haircut 8" },
                     
                     // Beard Grooming Category
-                    { src: "images-videos/beard1.jpg", category: "beard", title: "Beard Grooming 1" },
-                    { src: "images-videos/beard2.jpg", category: "beard", title: "Beard Grooming 2" },
-                    { src: "images-videos/beard3.jpg", category: "beard", title: "Beard Grooming 3" },
+                    { src: "images-videos/beard1.jpeg", category: "beard", title: "Beard Grooming 1" },
+                    { src: "images-videos/beard2.jpeg", category: "beard", title: "Beard Grooming 2" },
+                    { src: "images-videos/beard1.jpeg", category: "beard", title: "Beard Grooming 1" },
                     
                     // Spa & Massage Category
-                    { src: "images-videos/spa1.jpg", category: "spa", title: "Spa Treatment 1" },
-                    { src: "images-videos/spa2.jpg", category: "spa", title: "Spa Treatment 2" },
-                    { src: "images-videos/spa3.jpg", category: "spa", title: "Spa Treatment 3" },
+                    { src: "images-videos/spa1.jpeg", category: "spa", title: "Spa Treatment 1" },
+                    { src: "images-videos/spa2.jpeg", category: "spa", title: "Spa Treatment 2" },
+                    { src: "images-videos/spa3.jpeg", category: "spa", title: "Spa Treatment 3" },
 
                     // Nail Art Category
                     { src: "images-videos/nail1.jpeg", type: "image", category: "nail", title: "Nail Art 1" },
@@ -2753,6 +2587,9 @@
                     { src: "images-videos/nail3.jpeg", type: "image", category: "nail", title: "Nail Art 3" },
                     { src: "images-videos/nail4.jpeg", type: "image", category: "nail", title: "Nail Art 4" },
                     { src: "images-videos/nail5.jpeg", type: "image", category: "nail", title: "Nail Art 5" },
+                    { src: "images-videos/nail6.jpeg", type: "image", category: "nail", title: "Nail Art 6" },
+                    { src: "images-videos/nail7.jpeg", type: "image", category: "nail", title: "Nail Art 7" },
+                    { src: "images-videos/nail8.jpeg", type: "image", category: "nail", title: "Nail Art 8" },
                     
                     // Video Category
                     { src: "images-videos/video1.mp4", category: "video", title: "Showcase Video 1" },
@@ -2778,9 +2615,6 @@
                 
                 // Add bubbles dynamically
                 this.createBubbles();
-                
-                // Add floating elements to hero
-                this.createFloatingElements();
             }
             
             createBubbles() {
@@ -2804,36 +2638,6 @@
                     `;
                     
                     bubblesContainer.appendChild(bubble);
-                }
-            }
-            
-            createFloatingElements() {
-                const floatingContainer = document.querySelector('.floating-elements');
-                if (!floatingContainer) return;
-                
-                // Clear existing elements
-                floatingContainer.innerHTML = '';
-                
-                // Add more floating elements
-                for (let i = 0; i < 8; i++) {
-                    const types = ['dot', 'line', 'blob'];
-                    const type = types[Math.floor(Math.random() * types.length)];
-                    const element = document.createElement('div');
-                    element.className = `floating-element floating-${type}`;
-                    
-                    const left = Math.random() * 90 + 5;
-                    const top = Math.random() * 90 + 5;
-                    const delay = Math.random() * 5;
-                    const duration = 8 + Math.random() * 7;
-                    
-                    element.style.cssText = `
-                        left: ${left}%;
-                        top: ${top}%;
-                        animation-delay: ${delay}s;
-                        animation-duration: ${duration}s;
-                    `;
-                    
-                    floatingContainer.appendChild(element);
                 }
             }
             
@@ -2885,7 +2689,7 @@
                     filter.addEventListener('click', (e) => this.handleGalleryFilter(e.target));
                 });
                 
-                // Form submissions
+                // Form submissions - UPDATED TO SEND PROFESSIONAL MESSAGE
                 document.getElementById('bookingForm').addEventListener('submit', this.handleBookingSubmit.bind(this));
                 
                 // Modal close buttons
@@ -3117,15 +2921,17 @@
                 this.renderGallery(filter.dataset.filter);
             }
             
-            // Handle booking submission
+            // Handle booking submission - UPDATED TO SEND PROFESSIONAL MESSAGE
             handleBookingSubmit(e) {
                 e.preventDefault();
                 
                 const name = document.getElementById('name').value.trim();
                 const phone = document.getElementById('phone').value.trim();
+                const email = document.getElementById('email').value.trim();
                 const service = document.getElementById('service').value;
                 const date = document.getElementById('date').value;
                 const time = document.getElementById('time').value;
+                const message = document.getElementById('message').value.trim();
                 
                 if (!name || !phone || !service || !date || !time) {
                     this.showNotification('Please fill in all required fields');
@@ -3141,18 +2947,7 @@
                     day: 'numeric'
                 });
                 
-                // Show success modal
-                const appointmentDetails = document.getElementById('appointmentDetails');
-                if (appointmentDetails) {
-                    appointmentDetails.innerHTML = `
-                        <p><strong>Client Name:</strong> ${name}</p>
-                        <p><strong>Service Booked:</strong> ${service}</p>
-                        <p><strong>Appointment Date:</strong> ${formattedDate}</p>
-                        <p><strong>Appointment Time:</strong> ${time}</p>
-                        <p><strong>Contact:</strong> ${phone}</p>
-                    `;
-                }
-                
+                // Show success modal - UPDATED MESSAGE
                 const successModal = document.getElementById('successModal');
                 if (successModal) {
                     successModal.style.display = 'flex';
@@ -3162,17 +2957,41 @@
                 document.getElementById('bookingForm').reset();
                 this.setDefaultBookingDate();
                 
-                // Send WhatsApp notification if selected
-                const whatsappNotify = document.getElementById('whatsappNotify');
-                if (whatsappNotify && whatsappNotify.checked && phone) {
-                    const message = `New appointment booking from ${name} for ${service} on ${formattedDate} at ${time}. Contact: ${phone}`;
-                    const whatsappUrl = `https://wa.me/254114464941?text=${encodeURIComponent(message)}`;
-                    
-                    // Open in new tab after a delay
-                    setTimeout(() => {
-                        window.open(whatsappUrl, '_blank');
-                    }, 1000);
+                // Send WhatsApp/SMS notification
+                this.sendBookingNotification(name, phone, email, service, formattedDate, time, message);
+            }
+            
+            // Send professional booking notification
+            sendBookingNotification(name, phone, email, service, date, time, message) {
+                // Create professional message like the example provided
+                let professionalMessage = `Hello Lee the BarberShop!\n\n`;
+                professionalMessage += `I'm interested in your services.\n\n`;
+                professionalMessage += `📋 *Appointment Request*\n`;
+                professionalMessage += `Service: ${service}\n`;
+                professionalMessage += `Name: ${name}\n`;
+                professionalMessage += `Phone: ${phone}\n`;
+                if (email) {
+                    professionalMessage += `Email: ${email}\n`;
                 }
+                professionalMessage += `Date: ${date}\n`;
+                professionalMessage += `Time: ${time}\n`;
+                if (message) {
+                    professionalMessage += `Details: ${message}\n`;
+                }
+                professionalMessage += `\n📞 *Contact Information*\n`;
+                professionalMessage += `Please contact me to confirm this appointment. Thank you!\n\n`;
+                professionalMessage += `_This message was sent via the Lee the BarberShop website_`;
+                
+                // Encode the message for URL
+                const encodedMessage = encodeURIComponent(professionalMessage);
+                
+                // Create WhatsApp URL
+                const whatsappUrl = `https://wa.me/254114464941?text=${encodedMessage}`;
+                
+                // Open WhatsApp in new tab
+                setTimeout(() => {
+                    window.open(whatsappUrl, '_blank');
+                }, 500);
             }
             
             // Show notification
